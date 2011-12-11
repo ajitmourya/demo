@@ -1,0 +1,29 @@
+<%=form_for @user_info do |f| %>
+	<% if @user_info.errors.any? %>
+		<div id="errorExplanation">
+		<h2><%= pluralize(@user_info.errors.count, "error") %> prohibited this post from being saved:</h2>
+		<ul>
+			<% @user_info.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+		</div>
+	<% end %>
+	<div> 
+		<%=f.label :first_name %>
+		<%=f.text_field :first_name%></br>
+		<%=f.label :last_name %>
+		<%=f.text_field :last_name%></br>
+		<%=f.label :age %>
+		<%=f.text_field :age %></br>
+		<%=f.label :mobile_number %>
+		<%=f.text_field :mobile_number%></br>
+		<%=f.label 'Country'%>
+		<%=f.collection_select :country_id, Country.all, :id, :name, {:prompt=>true} %>
+		<%=f.label 'States'%>
+		<%=f.collection_select :state_id, [],[],[],{:prompt=>true} %>
+		<%#= show_simple_captcha(:object=>"user") %>
+		<%=f.submit%>
+	</div>
+<%end%>
+
